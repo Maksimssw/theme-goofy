@@ -1,0 +1,56 @@
+/*--------------------------------------------------------------
+# Variables, mixins
+--------------------------------------------------------------*/
+@import '../../../vue/src/assets/css/scss/variables/variables';
+@import '../../../vue/src/assets/css/scss/mixins';
+
+/*--------------------------------------------------------------
+# Reset
+--------------------------------------------------------------*/
+@import '../../../vue/src/assets/css/scss/reset/normalize';
+@import '../../../vue/src/assets/css/scss/reset/reset';
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+@import '../../../vue/src/assets/css/scss/layout/layout';
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+@import '../../../vue/src/assets/css/scss/elements/elements';
+
+/*--------------------------------------------------------------
+# App
+--------------------------------------------------------------*/
+@import '../../../vue/src/assets/css/scss/app';
+
+#content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#activate{
+    max-width: rem(520px)!important;
+}
+.row p{
+    line-height: 1.25;
+}
+.about{
+    margin-bottom: 1rem;
+}
+
+// Fade
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.2s ease;
+}
+
+.fade-enter-active {
+    transition-delay: 0.2s;
+}
+
+.fade-enter,
+.fade-leave-active {
+    opacity: 0;
+}

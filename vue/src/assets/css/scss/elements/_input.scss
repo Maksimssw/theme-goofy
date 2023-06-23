@@ -1,0 +1,75 @@
+/*--------------------------------------------------------------
+# All inputs (input, textarea, select and etc)
+--------------------------------------------------------------*/
+input ,select, textarea {
+    position: relative;
+    background: var(--second-color);
+    line-height: 1.25;
+    color: var(--font-main__color);
+    padding: rem(14px) rem(22px);
+    width: 100%;
+    border-radius: rem(8px);
+    transition: all .3s ease;
+    z-index: 1;
+    &:focus{
+        background: var(--main-color_dark);
+    }
+    @include placeholder(var(--placeholder-color));
+    @include placeholder-focus(transparent);
+}
+select {
+    cursor: pointer;
+    appearance: none;
+    padding-right: rem(42px);
+}
+textarea{
+    resize: none;
+}
+
+// Gradient Border styles
+.border {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: calc(100% + 2px);
+    height: calc(100% + 2px);
+    background: linear-gradient(to right, #8573f5 0%, #e76aca 50%, #79e3b9 100%);
+    border-radius: rem(8px);
+    z-index: 0;
+    transition: all .3s ease;
+}
+
+.input, .select{
+    position: relative;
+    display: flex;
+    align-items: center;
+    transition: all .3s ease;
+    .border {
+        opacity: 0;
+    }
+    input:focus ~ .border, select:focus~.border , textarea:focus~.border{
+        opacity: 1;
+    }
+    &.disabled{
+        opacity: .7;
+        input, select{
+            pointer-events: none;
+        }
+    }
+    &.w100{
+        width: 100%;
+    }
+}
+
+.select {
+    &::before {
+        @include pseudo();
+        right: rem(22px);
+        top: 50%;
+        transform: translateY(-50%);
+        @include triangle(rem(4px), down, var(--font-main__color));
+        z-index: 2;
+    }
+}

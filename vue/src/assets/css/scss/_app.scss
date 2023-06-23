@@ -1,0 +1,67 @@
+/*--------------------------------------------------------------
+# App
+--------------------------------------------------------------*/
+html {
+    font-size: $font-main__size;
+}
+
+body {
+    font-family: $font_main;
+    font-weight: $font-main__weight;
+    color: var(--font-main__color);
+    line-height: $font_main__line;
+    letter-spacing: 0.025rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: var(--background-color);
+    overflow: hidden;
+    height: 100vh;
+    transition: all .3s ease;
+}
+*{
+    &::-webkit-scrollbar {
+        width: rem(8px);
+        height: rem(8px);
+        transition: all .3s ease;
+
+    }
+
+    &::-webkit-scrollbar-track {
+        background: rgba(24, 29, 35, 0.5);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: rem(12px);
+        background: var(--link-color);
+        transition: all .3s ease;
+
+        &:hover {
+            background: var(--link-color__hover);
+        }
+    }
+}
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+.material-icons-outlined {
+    font-size: rem(24px);
+    transition: all .3s ease;
+}
+
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: rem(26px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--font-main__color);
+    &:hover{
+        color: var(--font-main__color);
+    }
+    span {
+        color: var(--link-color);
+    }
+}

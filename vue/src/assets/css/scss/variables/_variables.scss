@@ -1,0 +1,50 @@
+@import 'z-index';
+
+/*--------------------------------------------------------------
+# Fonts
+--------------------------------------------------------------*/
+$font_main              : 'Nunito Sans', Arial, sans-serif;
+$font-main__size        : 16px;
+$font-main__weight      : 400;
+$font_main__line        : 1.5em;
+
+/*--------------------------------------------------------------
+# Colors
+--------------------------------------------------------------*/
+:root{
+    --font-main__color           : #1e242c;
+    --font-dark__color           : #181d23;
+    --font-gray__color           : #474e55;
+    --placeholder-color          : rgba(30, 36, 44, 0.5);
+
+    --link-color                 : #9488f0;
+    --link-color__hover          : #afa5fb;
+
+    --button-color               : #12b886;
+    --button-color__hover        : #22d49f;
+    --button-red-color           : #ff646d;
+    --button-red-color_hover     : #ff8c93;
+    --button-blue-color          : #46a6ff;
+    --button-blue-color_hover    : #60b1fd;
+
+    --main-color                 : #fff;
+    --main-color_dark            : #fff;
+    --second-color               : #f4f6f9;
+    --background-color           : #dfecf0;  
+
+    --success__color             : #6bec47;
+    --yellow__color              : #f1ff33;
+    --alert__color               : #fd3737;
+}
+
+.dark:root{
+    --font-main__color           : #dfecf0;
+    --font-dark__color           : #ccd7da;
+    --font-gray__color           : #6d7986;
+    --placeholder-color          : rgba(223, 236, 240, 0.5);
+
+    --main-color                 : #1e242c;
+    --main-color_dark            : #181d23;
+    --second-color               : #29313a;
+    --background-color           : #232a32;    
+}

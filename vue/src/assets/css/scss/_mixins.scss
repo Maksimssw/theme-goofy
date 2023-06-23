@@ -1,0 +1,234 @@
+/*--------------------------------------------------------------
+# Fonts
+--------------------------------------------------------------*/
+
+// Font face
+@mixin font-face($font-family, $file-path, $weight: normal, $style: normal) {
+	@font-face {
+		font-family: $font-family;
+		src: url("#{$file-path}.eot?#iefix") format("embedded-opentype"),
+		url("#{$file-path}.woff") format("woff"),
+		url("#{$file-path}.woff2") format("woff2"),
+		url("#{$file-path}.svg") format("svg"),
+		url("#{$file-path}.ttf") format("truetype");
+		font-weight: $weight;
+		font-style: $style;
+		font-display: swap;
+	}
+}
+
+// Clear units
+@function clear-units($value) {
+    @if type-of($value) == "number" {
+        @if (unitless($value)) {
+            @return $value;
+        } @else if unit($value) == "em"{
+            @return $value / 1em;
+        } @else if unit($value) == "px" {
+            @return $value / 1px;
+        } @else if unit($value) == "pt" {
+            @return $value / 1pt;
+        }
+    } @else {
+        @warn "Not a number value: #{$value}";
+        @return $value;
+    }
+}
+
+// px to rem
+@function rem($pixels, $context: $font-main__size) {
+	@if (unitless($pixels)) {
+		$pixels: calc($pixels * 1px);
+	}
+	@if (unitless($context)) {
+		$context: calc($context * 1px);
+	}
+	@return calc($pixels / $context * 1rem);
+}
+
+
+/*--------------------------------------------------------------
+# Position
+--------------------------------------------------------------*/
+
+// Centering (Absolute position)
+@mixin centering($pos: xy) {
+	position: absolute;
+	@if $pos == xy {
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+	@else if $pos == x{
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	@else if $pos == y{
+		top: 50%;
+		transform: translateY(-50%);
+	}	
+}
+
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+
+// Pseudo element
+@mixin pseudo($display: block, $pos: absolute, $content: "") {
+	content: $content;
+	display: $display;
+	position: $pos;
+}
+
+// Placeholder
+@mixin placeholder($color, $size: inherit, $weight: normal) {
+	&::-webkit-input-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+		transition: all .2s ease;
+	}
+	&:-moz-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+		transition: all .2s ease;
+	}
+	&::-moz-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+		transition: all .2s ease;
+	}
+	&:-ms-input-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+		transition: all .2s ease;
+	}
+}
+@mixin placeholder-focus($color, $size: inherit, $weight: normal) {
+	&:focus::-webkit-input-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+	}
+	&:focus:-moz-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+	}
+	&:focus::-moz-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+	}
+	&:focus:-ms-input-placeholder {
+		color: $color;
+		font-size: $size;
+		font-weight: $weight;
+	}
+}
+
+// CSS Triangle
+@mixin triangle($width, $direction, $color) {
+	width: 0;
+	height: 0;
+	@if $direction == up {
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;
+		border-bottom: $width solid $color;
+	}
+	@if $direction == down {
+		border-left: $width solid transparent;
+		border-right: $width solid transparent;
+		border-top: $width solid $color;
+	}
+	@if $direction == left {
+		border-top: $width solid transparent;
+		border-bottom: $width solid transparent;
+		border-right: $width solid $color;
+	}
+	@if $direction == right {
+		border-top: $width solid transparent;
+		border-bottom: $width solid transparent;
+		border-left: $width solid $color;
+	}
+}
+
+// Responsive Ratio
+@mixin responsive-ratio($x,$y, $pseudo: false) {
+	$padding: unquote( ( $y / $x ) * 100 + '%' );
+	@if $pseudo {
+		&:before {
+			@include pseudo($pos: relative);
+			width: 100%;
+			padding-top: $padding;
+		}
+	} @else {
+		padding-top: $padding;
+	}
+}
+
+
+/*--------------------------------------------------------------
+# Flexbox and Grid mixins
+--------------------------------------------------------------*/
+
+@mixin flex($align: normal, $justify: normal, $direction: row) {
+	display: flex;
+	flex-direction: $direction;
+	@if $align != normal {
+		align-items: $align;
+	}
+	@if $justify != normal {
+		justify-content: $justify;
+	}
+}
+
+@mixin grid($cols: auto, $rows: auto, $gap: 0, $width: 100%) {
+	display: grid;
+	grid-gap: $gap;
+	width: $width;
+	@if $cols != auto {
+		grid-template-columns: $cols;
+	}
+	@if $rows != auto {
+		grid-template-rows: $rows;
+	}
+}
+
+
+/*--------------------------------------------------------------
+# Media Query
+(You can use breakpoints or use custom number for create media query)
+--------------------------------------------------------------*/
+@mixin mq($width, $type: max) {
+	@media only screen and (#{$type}-width: $width) {
+		@content;
+	}
+}
+
+/*--------------------------------------------------------------
+# Z-Index
+--------------------------------------------------------------*/
+@function z($name) {
+    @if index($z-indexes, $name) {
+        @return (length($z-indexes) - index($z-indexes, $name)) + 1;
+    } @else {
+        @warn 'There is no item "#{$name}" in this list; choose one of: #{$z-indexes}';
+        @return null;
+    }
+}
+
+/*--------------------------------------------------------------
+# CSS3 Prefix
+--------------------------------------------------------------*/
+@mixin css3-prefix($prop, $value) {
+	-webkit-#{$prop}: #{$value};
+	-moz-#{$prop}: #{$value};
+	-ms-#{$prop}: #{$value};
+	-o-#{$prop}: #{$value};
+	#{$prop}: #{$value};
+}

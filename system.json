@@ -1,0 +1,10 @@
+{
+  "options": {
+    "template": "goofy",
+    "utm_key": "utm_name",
+    "trackers": "fbq,ttq,snaptr,gtag,vk",
+    "version": "1.1.0"
+  },
+  "magicchecker": {
+  }
+}

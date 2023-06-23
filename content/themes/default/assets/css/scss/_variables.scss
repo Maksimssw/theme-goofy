@@ -1,0 +1,32 @@
+/*--------------------------------------------------------------
+# Fonts
+--------------------------------------------------------------*/
+$font_main                  : 'Roboto', Arial, sans-serif;
+$font-main__size            : 16px;
+$font-main__weight          : 400;
+$font_main__line            : 1.5em;
+$font-main__color           : #1e242c;
+$font-light_color           : #f7f7f7;
+/*--------------------------------------------------------------
+# Colors
+--------------------------------------------------------------*/
+$link-color                 : #9488f0;
+$link-color__hover          : #afa5fb;
+
+$button-color               : #12b886;
+$button-color__hover        : #22d49f;
+
+$footer-color               : #1e242c;
+$header-color               : #ffffff;
+$background-color           : #f0f0f0;
+
+/*--------------------------------------------------------------
+# Z-Index
+--------------------------------------------------------------*/
+$z-indexes: (
+    "preloader",
+    "overlay",
+    "header",
+    "content",
+    "footer"
+);

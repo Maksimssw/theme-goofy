@@ -1,0 +1,122 @@
+/*--------------------------------------------------------------
+# Variables, mixins
+--------------------------------------------------------------*/
+@import 'scss/variables';
+@import 'scss/mixins';
+
+/*--------------------------------------------------------------
+# Reset
+--------------------------------------------------------------*/
+@import 'scss/reset/normalize';
+@import 'scss/reset/reset';
+
+/*--------------------------------------------------------------
+# Typography
+--------------------------------------------------------------*/
+@import 'scss/typography';
+
+/*--------------------------------------------------------------
+# Elements
+--------------------------------------------------------------*/
+@import 'scss/elements/elements';
+
+/*--------------------------------------------------------------
+# App
+--------------------------------------------------------------*/
+html {
+    font-size: $font-main__size;
+}
+
+body {
+    font-family: $font_main;
+    font-weight: $font-main__weight;
+    color: $font-main__color;
+    line-height: $font_main__line;
+    letter-spacing: 0.025rem;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: $background-color;
+}
+
+/*--------------------------------------------------------------
+# Layout
+--------------------------------------------------------------*/
+.container {
+    max-width: 1440px;
+    width: 100%;
+    padding: 0 rem(24px);
+    margin: 0 auto;
+}
+
+#wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+    padding: 1rem 0;
+}
+
+#header,
+#content,
+#footer {
+    width: 100%;
+}
+#content{
+    flex-grow: 1;
+    z-index: z('content');
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header{
+    position: sticky;
+    width: 100%;
+    top: 0;
+    background: $header-color;
+    z-index: z('header');
+    >.container{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+.logo{
+    font-weight: bold;
+    font-size: rem(28px);
+    text-decoration: none;
+    color: $font-main__color!important;
+    span{
+        color: $link-color;
+    }
+    &:hover{
+        filter: brightness(110%);
+    }
+}
+#site-nav{
+    display: flex;
+    align-items: center;
+    gap: rem(24px);
+    a{
+        padding: rem(18px) 0;
+    }
+}
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer{
+    z-index: z('footer');
+    background: $footer-color;
+    color: $font-light_color;
+}
+
+#copyright{
+    font-size: rem(14px);
+    opacity: .5;
+    padding: rem(8px) 0;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
